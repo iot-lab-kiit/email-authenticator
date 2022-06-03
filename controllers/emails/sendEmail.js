@@ -13,6 +13,10 @@ const sendEmail = (req, res) => {
   const min = 100000;
   const randomNumber = Math.floor(Math.random() * (max - min) + min);
 
+  if (!emailPayload.email) {
+    throw new ApiError("Email is required", 400);
+  }
+
   const newEmailPayload = {
     transid: transid,
     email: emailPayload.email,
